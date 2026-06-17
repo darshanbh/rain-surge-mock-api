@@ -1,0 +1,20 @@
+{
+    "settlements": [
+        {
+            "scenario": "Standard Rain Surge Settlement",
+            "rider_share": 85.0,
+            "lsp_share": 15.0,
+            "rain_surge_amount": 25.0
+        },
+        {
+            "scenario": "Zero Rain Surge Settlement",
+            "rider_share": 70.0,
+            "lsp_share": 30.0,
+            "rain_surge_amount": 0.0
+        }
+    ],
+    "used_by": [
+        "TS_RS_026",
+        "TS_RS_029"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "app_ui_scenarios": [
+        {
+            "scenario": "Rain Zone",
+            "show_rain_icon": true,
+            "show_raining_carousel": true,
+            "weather_state": "Heavy Rain"
+        },
+        {
+            "scenario": "Clear Zone",
+            "show_rain_icon": false,
+            "show_raining_carousel": false,
+            "weather_state": "Clear Weather"
+        }
+    ],
+    "used_by": [
+        "TS_RS_APP_001",
+        "TS_RS_APP_002",
+        "TS_RS_APP_003",
+        "TS_RS_APP_004",
+        "TS_RS_APP_005",
+        "TS_RS_APP_007",
+        "TS_RS_APP_008",
+        "TS_RS_APP_009"
+    ]
+}
