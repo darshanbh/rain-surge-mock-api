@@ -243,3 +243,10 @@ def set_zone_weather():
         "message": f"Updated weather for zone '{matched_zone['scenario']}' to '{matched_weather_scenario['scenario']}'",
         "zone": matched_zone
     }), 200
+
+@weather_bp.route('/api/zones', methods=['GET'])
+def get_all_zones():
+    return jsonify({
+        "zones": state.active_zones
+    }), 200
+
