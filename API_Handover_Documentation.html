@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Surge Mock API - Developer Handover Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-bg: #e0e7ff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-main: #f9fafb;
+            --bg-card: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            background-color: var(--primary-bg);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        p.lead {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .link-box {
+            background-color: #f3f4f6;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .link-item {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .link-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-item strong {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .link-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .method {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: white;
+            display: inline-block;
+        }
+
+        .method-get {
+            background-color: var(--success);
+        }
+
+        .method-post {
+            background-color: var(--primary);
+        }
+
+        code {
+            font-family: monospace;
+            background-color: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #d97706;
+        }
+
+        pre {
+            background-color: #1f2937;
+            color: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .print-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0 auto;
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .print-btn:hover {
+            background-color: #4338ca;
+            transform: translateY(-1px);
+        }
+
+        /* Print styles for clean PDF export */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .print-btn {
+                display: none;
+            }
+            pre {
+                background-color: #f3f4f6;
+                color: #1f2937;
+                border: 1px solid #d1d5db;
+                page-break-inside: avoid;
+            }
+            pre code {
+                color: #1f2937;
+            }
+            h2 {
+                page-break-after: avoid;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="badge">API Handover Document</span>
+            <h1>Rain Surge Mock API Integration Guide</h1>
+            <p class="lead">Summary of tasks completed, deployment details, and API documentation for developers integrating the Rain Surge feature.</p>
+        </header>
+
+        <section>
+            <h2>1. Tasks Successfully Completed</h2>
+            <ul>
+                <li><strong>Local Git Repository Setup:</strong> Initialized local git configuration and linked the repository folder directly to GitHub.</li>
+                <li><strong>CORS Support Enabled:</strong> Installed and integrated the <code>flask-cors</code> package into the Flask application, enabling cross-origin browser requests so the <strong>LSP Website</strong> can call the API without encountering security blocks.</li>
+                <li><strong>Render Cloud Deployment:</strong> Configured and deployed the API to Render with automatic redeploys linked to the GitHub main branch.</li>
+                <li><strong>Bangalore Zone Support:</strong> Added Bangalore to the mock zones database and mapped its geographical coordinates.</li>
+                <li><strong>Zones Status Endpoint:</strong> Added a brand new <code>GET /api/zones</code> endpoint returning a complete list of all configured zones and their active weather in a single JSON payload.</li>
+                <li><strong>Postman Verification:</strong> Validated all core endpoints, custom weather settings, and dynamic quotation results successfully in Postman.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>2. Handover & Deployment URLs</h2>
+            <div class="link-box">
+                <div class="link-item">
+                    <strong>Live Base URL:</strong>
+                    <a href="https://rain-surge-mock-api.onrender.com" target="_blank">https://rain-surge-mock-api.onrender.com</a>
+                </div>
+                <div class="link-item">
+                    <strong>GitHub Repo:</strong>
+                    <a href="https://github.com/darshanbh/rain-surge-mock-api" target="_blank">https://github.com/darshanbh/rain-surge-mock-api</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. API Endpoints Reference</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Method</th>
+                        <th style="width: 35%;">Endpoint</th>
+                        <th style="width: 50%;">Description / Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code>/</code></td>
+                        <td>Service health check / online verification.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code>/api/zones</code></td>
+                        <td>Returns status, active weather, and agent counts for all zones (Bangalore, Chennai, etc.).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code>/api/quotation</code></td>
+                        <td>Computes quotation and applies rain surge multiplier based on active weather.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-get">GET</span></td>
+                        <td><code>/api/app-status</code></td>
+                        <td>Returns UI flags to toggle rain warnings on the mobile app or web headers.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code>/api/zone/weather</code></td>
+                        <td>Changes simulated weather state for a specific zone.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method method-post">POST</span></td>
+                        <td><code>/api/scenario/reset</code></td>
+                        <td>Resets all zone weather, rules, and cache values back to default.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>4. Payload Examples</h2>
+            
+            <h3>Fare Quotation Request (POST /api/quotation)</h3>
+            <pre><code>{
+    "base_fare": 100.0,
+    "zone_name": "Bangalore"
+}</code></pre>
+
+            <h3>Fare Quotation Response (Heavy Rain - Critical Surge)</h3>
+            <pre><code>{
+    "active_business_rule_scenario": null,
+    "active_weather": "Heavy Rain",
+    "agent_zone": null,
+    "base_fare": 100.0,
+    "delivery_zone": null,
+    "pickup_zone": "Bangalore",
+    "rain_surge": 50.0,
+    "reason": "Derived from Rain Severity: 55 (Level: CRITICAL) using pickup zone 'Bangalore' weather: 'Heavy Rain'.",
+    "severity_score": 55,
+    "surge_level": "CRITICAL",
+    "total": 150.0
+}</code></pre>
+
+            <h3>Simulate Weather State (POST /api/zone/weather)</h3>
+            <pre><code>{
+    "zone": "Bangalore",
+    "weather_state": "Heavy Rain"
+}</code></pre>
+        </section>
+
+        <section>
+            <h2>5. Testing Simulated Failures</h2>
+            <p>Append the <code>fail</code> query parameter to any request URL to test client-side resilience and error screens:</p>
+            <ul>
+                <li><code>?fail=timeout</code> &rarr; Returns <code>408 Request Timeout</code></li>
+                <li><code>?fail=http500</code> &rarr; Returns <code>500 Internal Server Error</code></li>
+                <li><code>?fail=http429</code> &rarr; Returns <code>429 Too Many Requests</code></li>
+            </ul>
+        </section>
+
+        <button class="print-btn" onclick="window.print()">Export Document to PDF</button>
+    </div>
+</body>
+</html>
