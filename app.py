@@ -1,7 +1,9 @@
 import os
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Register Blueprints
 from routes.weather import weather_bp
