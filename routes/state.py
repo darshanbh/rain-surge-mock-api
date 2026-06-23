@@ -102,6 +102,7 @@ def calculateRainSeverity(payload):
 # Geolocation coordinates mapping for mock zones
 ZONE_COORDINATES = {
     "zone a": (12.9716, 77.5946), #banglore
+    "bangalore": (12.9716, 77.5946),
     "zone b": (13.0827, 80.2707),
     "chennai": (13.0827, 80.2707),
     "delhi": (28.6139, 77.2090),

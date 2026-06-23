@@ -35,6 +35,12 @@
             "active_agents": 1,
             "weather_state": "Clear",
             "cache_available": true
+        },
+        {
+            "scenario": "Bangalore",
+            "active_agents": 3,
+            "weather_state": "Clear",
+            "cache_available": true
         }
     ],
     "used_by": [
