@@ -1,0 +1,24 @@
+{
+    "app_business_logic_scenarios": [
+        {
+            "scenario": "Agent in Clear Zone, Pickup in Rain Zone",
+            "agent_zone": "Zone B",
+            "pickup_zone": "Zone A",
+            "weather_state": "Heavy Rain",
+            "rain_surge": 20.0
+        },
+        {
+            "scenario": "Agent in Rain Zone, Pickup in Clear Zone",
+            "agent_zone": "Zone A",
+            "pickup_zone": "Zone B",
+            "weather_state": "Clear Weather",
+            "rain_surge": 0.0
+        }
+    ],
+    "used_by": [
+        "TS_RS_APP_011",
+        "TS_RS_APP_012",
+        "TS_RS_APP_013",
+        "TS_RS_APP_014"
+    ]
+}

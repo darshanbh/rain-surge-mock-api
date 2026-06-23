@@ -1,0 +1,23 @@
+{
+    "app_earnings": [
+        {
+            "scenario": "Single Order Earning",
+            "order_id": "ORD_3001",
+            "base_earnings": 50.0,
+            "rain_surge": 15.0,
+            "total": 65.0
+        },
+        {
+            "scenario": "High Surge Order Earning",
+            "order_id": "ORD_3002",
+            "base_earnings": 55.0,
+            "rain_surge": 30.0,
+            "total": 85.0
+        }
+    ],
+    "used_by": [
+        "TS_RS_APP_006",
+        "TS_RS_APP_010",
+        "TS_RS_APP_DEEP_012"
+    ]
+}

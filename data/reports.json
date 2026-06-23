@@ -1,0 +1,22 @@
+{
+    "reports": [
+        {
+            "scenario": "Rain Surge Discrepancy Check",
+            "order_id": "ORD_2001",
+            "rain_surge": 30.0,
+            "quotation_total": 130.0,
+            "earnings_total": 95.0
+        },
+        {
+            "scenario": "Rain Surge Matching Check",
+            "order_id": "ORD_2002",
+            "rain_surge": 0.0,
+            "quotation_total": 100.0,
+            "earnings_total": 70.0
+        }
+    ],
+    "used_by": [
+        "TS_RS_025",
+        "TS_RS_E2E_008"
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "orders": [
+        {
+            "scenario": "Created Order",
+            "order_id": "ORD_1001",
+            "weather_state": "Heavy Rain",
+            "rain_surge": 45.0,
+            "order_status": "CREATED"
+        },
+        {
+            "scenario": "Accepted Order",
+            "order_id": "ORD_1002",
+            "weather_state": "Moderate Rain",
+            "rain_surge": 20.0,
+            "order_status": "ACCEPTED"
+        },
+        {
+            "scenario": "Completed Order",
+            "order_id": "ORD_1003",
+            "weather_state": "Clear Weather",
+            "rain_surge": 0.0,
+            "order_status": "COMPLETED"
+        }
+    ],
+    "used_by": [
+        "TS_RS_011",
+        "TS_RS_013",
+        "TS_RS_014",
+        "TS_RS_E2E_004"
+    ]
+}

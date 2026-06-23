@@ -1,0 +1,71 @@
+{
+    "weather_scenarios": [
+        {
+            "scenario": "Clear",
+            "precip_mm": 0.0,
+            "visibility": 10.0,
+            "gust_speed": 5.0,
+            "humidity": 60,
+            "severity_score": 0.0,
+            "rain_surge_level": 0
+        },
+        {
+            "scenario": "Drizzle",
+            "precip_mm": 1.2,
+            "visibility": 8.0,
+            "gust_speed": 8.0,
+            "humidity": 70,
+            "severity_score": 1.0,
+            "rain_surge_level": 1
+        },
+        {
+            "scenario": "Light Rain",
+            "precip_mm": 2.0,
+            "visibility": 6.0,
+            "gust_speed": 12.0,
+            "humidity": 75,
+            "severity_score": 2.0,
+            "rain_surge_level": 1
+        },
+        {
+            "scenario": "Moderate Rain",
+            "precip_mm": 5.0,
+            "visibility": 4.0,
+            "gust_speed": 18.0,
+            "humidity": 80,
+            "severity_score": 3.0,
+            "rain_surge_level": 2
+        },
+        {
+            "scenario": "Heavy Rain",
+            "precip_mm": 15.0,
+            "visibility": 2.0,
+            "gust_speed": 25.0,
+            "humidity": 85,
+            "severity_score": 4.0,
+            "rain_surge_level": 3
+        },
+        {
+            "scenario": "Extreme Rain",
+            "precip_mm": 55.0,
+            "visibility": 0.5,
+            "gust_speed": 40.0,
+            "humidity": 90,
+            "severity_score": 5.0,
+            "rain_surge_level": 3
+        }
+    ],
+    "used_by": [
+        "TS_RS_001",
+        "TS_RS_002",
+        "TS_RS_003",
+        "TS_RS_004",
+        "TS_RS_API_006",
+        "TS_RS_API_007",
+        "TS_RS_API_008",
+        "TS_RS_API_012",
+        "TS_RS_API_013",
+        "TS_RS_E2E_001",
+        "TS_RS_E2E_002"
+    ]
+}

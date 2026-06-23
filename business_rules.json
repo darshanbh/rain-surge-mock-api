@@ -1,0 +1,83 @@
+{
+    "business_rules": [
+        {
+            "scenario_id": "Scenario 1",
+            "test_case": "TS_RS_E2E_011",
+            "condition": {
+                "active_agents": 0,
+                "cache_expired": true
+            },
+            "expected_behavior": [
+                "Use last known weather",
+                "Use fallback weather",
+                "No Rain Surge"
+            ],
+            "status": "Pending Product Confirmation"
+        },
+        {
+            "scenario_id": "Scenario 2",
+            "test_case": "TS_RS_E2E_012",
+            "condition": {
+                "new_zone": true,
+                "no_cache": true,
+                "no_agents": true
+            },
+            "expected_behavior": {
+                "action": "Generate quotation",
+                "rain_surge": 0.0
+            },
+            "status": "Pending Product Confirmation"
+        },
+        {
+            "scenario_id": "Scenario 3",
+            "test_case": "TS_RS_E2E_013",
+            "condition": {
+                "rain_at_quotation": true,
+                "clear_weather_before_completion": true
+            },
+            "expected_behavior": [
+                "Earnings locked at quotation time",
+                "Earnings recalculated"
+            ],
+            "status": "Pending Product Confirmation"
+        },
+        {
+            "scenario_id": "Scenario 4",
+            "test_case": "TS_RS_E2E_016",
+            "condition": {
+                "cell_inactive": true,
+                "cache_expired": true,
+                "no_refresh": true
+            },
+            "expected_behavior": [
+                "Use fallback weather",
+                "Use last known weather"
+            ],
+            "status": "Pending Product Confirmation"
+        },
+        {
+            "scenario_id": "Scenario 5",
+            "test_case": "TS_RS_APP_DEEP_011",
+            "condition": {
+                "cache_age_minutes": [
+                    29,
+                    30,
+                    31
+                ]
+            },
+            "expected_behavior": {
+                "29_min": "valid",
+                "30_min": "boundary",
+                "31_min": "expired"
+            },
+            "status": "Pending Product Confirmation"
+        }
+    ],
+    "used_by": [
+        "TS_RS_E2E_011",
+        "TS_RS_E2E_012",
+        "TS_RS_E2E_013",
+        "TS_RS_E2E_016",
+        "TS_RS_APP_DEEP_011"
+    ]
+}

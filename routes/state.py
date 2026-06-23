@@ -99,15 +99,75 @@ def calculateRainSeverity(payload):
         
     return min(score, 100)
 
-def getRainSurgeLevel(severity_score):
-    if severity_score < 10:
-        return "NORMAL"
-    elif severity_score < 30:
-        return "WATCH"
-    elif severity_score < 50:
-        return "SURGE"
+# Geolocation coordinates mapping for mock zones
+ZONE_COORDINATES = {
+    "zone a": (12.9716, 77.5946), #banglore
+    "zone b": (13.0827, 80.2707),
+    "chennai": (13.0827, 80.2707),
+    "delhi": (28.6139, 77.2090),
+    "cell a": (19.0760, 72.8777),
+    "new zone": (22.5726, 88.3639)
+}
+
+def getRainSurgeLevel(precip_mm_or_score, humidity=None, wind_gust=None, visibility=None):
+    # Dual signature support:
+    # 1. Single argument (severity_score)
+    if humidity is None and wind_gust is None and visibility is None:
+        severity_score = precip_mm_or_score
+        if severity_score < 10:
+            return "NORMAL"
+        elif severity_score < 30:
+            return "WATCH"
+        elif severity_score < 50:
+            return "SURGE"
+        else:
+            return "CRITICAL"
+
+    # 2. Multi-argument (precip_mm, humidity, wind_gust, visibility)
+    precip = precip_mm_or_score
+    try:
+        precip = float(precip) if precip is not None else 0.0
+    except (ValueError, TypeError):
+        precip = 0.0
+    try:
+        humidity = float(humidity) if humidity is not None else 65.0
+    except (ValueError, TypeError):
+        humidity = 65.0
+    try:
+        wind_gust = float(wind_gust) if wind_gust is not None else 0.0
+    except (ValueError, TypeError):
+        wind_gust = 0.0
+    try:
+        visibility = float(visibility) if visibility is not None else 10.0
+    except (ValueError, TypeError):
+        visibility = 10.0
+
+    # Level 0: Dry or Evaporating Rain
+    if precip == 0.0 or (precip < 0.5 and humidity < 65.0):
+        level = 0
+    # Level 1: Light Rain / Drizzle
+    elif 0.5 <= precip <= 2.5:
+        level = 1
+    # Level 2: Moderate / Steady Rain
+    elif 2.5 < precip <= 7.5:
+        level = 2
+    # Level 3: Severe / Heavy Rain
+    elif precip > 7.5:
+        level = 3
     else:
-        return "CRITICAL"
+        level = 0
+
+    # Hazard Escalator
+    if level == 2 and (wind_gust > 40.0 or visibility < 3.0):
+        level = 3
+
+    level_map = {
+        0: "NORMAL",
+        1: "WATCH",
+        2: "SURGE",
+        3: "CRITICAL"
+    }
+    return level_map.get(level, "NORMAL")
 
 def reset_state():
     global active_weather, active_cache, active_zones, active_business_rule_scenario, active_orders, active_rain_surge
